@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public bool gameStarted;
+
 
     private void Awake()
     {
@@ -25,11 +27,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameStarted)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                GameStart();
+            }
+        }
         
     }
 
     public void GameStart()
     {
+        gameStarted = true;
+
+    }
+
+    public void GameOver()
+    {
+        gameStarted = false;
 
     }
 }

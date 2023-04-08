@@ -16,8 +16,12 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        CheckInput();
+        if(GameManager.instance.gameStarted)
+        {
+            Move();
+            CheckInput();
+        }
+     
     }
 
     void Move()
