@@ -6,6 +6,7 @@ public class CarController : MonoBehaviour
 {
     public float moveSpeed;
     bool moveLeft = true; // currently moving to the left
+    bool firstInput = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,15 @@ public class CarController : MonoBehaviour
 
     void CheckInput() //when the player touching
     {
+
+        //first input ignore
+        if(firstInput)
+        {
+            firstInput= false;
+            return;
+
+        }
+
         if(Input.GetMouseButtonDown(0))
         {
 
