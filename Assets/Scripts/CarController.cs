@@ -37,7 +37,7 @@ public class CarController : MonoBehaviour
         //first input ignore
         if(firstInput)
         {
-            firstInput= false;
+            firstInput = false;
             return;
 
         }
