@@ -8,31 +8,43 @@ public class PlatformSpawner : MonoBehaviour
     public Transform lastPlatform; 
     Vector3 lastPosition;
     Vector3 newPosition;
+    bool stop;
 
 
     // Start is called before the first frame update
     void Start()
     {
         lastPosition = lastPlatform.position;
-        SpawnPlatform();
+        StartCoroutine(SpawnPlatforms());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnPlatform();
-        }
+
     }
 
 
-    void SpawnPlatform()
+    IEnumerator SpawnPlatforms()
     {
-        GeneratePosition();
-        Instantiate(spawnerPlatform, newPosition, Quaternion.identity);
-        lastPosition = newPosition;
+
+        while(!stop)
+        {
+            GeneratePosition();
+            Instantiate(spawnerPlatform, newPosition, Quaternion.identity);
+            lastPosition = newPosition;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+      
     }
+
+    //void SpawnPlatform()
+    //{
+    //    GeneratePosition();
+    //    Instantiate(spawnerPlatform, newPosition, Quaternion.identity);
+    //    lastPosition = newPosition;
+    //}
 
 
 
