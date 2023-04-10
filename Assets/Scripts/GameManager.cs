@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public bool gameStarted;
 
+    public GameObject spawnerPlatforms;// we need reference to platform to stop generating when car fall
+
 
     private void Awake()
     {
@@ -40,12 +42,14 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         gameStarted = true;
+        spawnerPlatforms.SetActive(true);
+
 
     }
 
     public void GameOver()
     {
-        gameStarted = false;
+        spawnerPlatforms.SetActive(false);
 
     }
 }
