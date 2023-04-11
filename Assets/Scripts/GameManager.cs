@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     public GameObject spawnerPlatforms;// we need reference to platform to stop generating when car fall
 
     int score = 0;
+
+    public Text scoreText;
+
+    public GameObject gameplayUI;
 
 
     private void Awake()
@@ -46,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         gameStarted = true;
         spawnerPlatforms.SetActive(true);
-
+        gameplayUI.SetActive(true);
         StartCoroutine(UpdateScore());
 
     }
@@ -69,7 +74,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             score++;
-            print(score);
+            
+            scoreText.text = score.ToString();
 
         }
     }
