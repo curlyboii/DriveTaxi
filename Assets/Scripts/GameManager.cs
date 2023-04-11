@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
 
     public GameObject gameplayUI;
-
+    public GameObject MenuUI;
 
     private void Awake()
     {
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
         spawnerPlatforms.SetActive(true);
         gameplayUI.SetActive(true);
+        MenuUI.SetActive(false);
         StartCoroutine(UpdateScore());
 
     }
