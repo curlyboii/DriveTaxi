@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnerPlatforms;// we need reference to platform to stop generating when car fall
 
+    int score = 0;
+
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
         spawnerPlatforms.SetActive(true);
 
+        StartCoroutine(UpdateScore());
 
     }
 
@@ -57,5 +60,17 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene("Scene_0");
+    }
+
+    IEnumerator UpdateScore()
+    {
+        while (true) 
+        {
+            yield return new WaitForSeconds(1f);
+
+            score++;
+            print(score);
+
+        }
     }
 }
