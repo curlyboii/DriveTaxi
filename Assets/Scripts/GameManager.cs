@@ -16,9 +16,13 @@ public class GameManager : MonoBehaviour
     int score = 0;
 
     public Text scoreText;
+    public Text bestScoreText;
+    int bestScore = 0; 
 
     public GameObject gameplayUI;
     public GameObject MenuUI;
+
+
 
     private void Awake()
     {
@@ -31,7 +35,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bestScore = PlayerPrefs.GetInt("BestScore");
+        bestScoreText.text = "Best score: " + bestScore;
+
+
     }
 
     // Update is called once per frame
@@ -53,14 +60,17 @@ public class GameManager : MonoBehaviour
         spawnerPlatforms.SetActive(true);
         gameplayUI.SetActive(true);
         MenuUI.SetActive(false);
-        StartCoroutine(UpdateScore());
+        StartCoroutine("UpdateScore");
 
     }
 
     public void GameOver()
     {
         spawnerPlatforms.SetActive(false);
+        StopCoroutine("UpdateScore");
+        SaveBestScore();
         Invoke("ReloadScene", 1f);
+
     }
 
     public void ReloadScene()
@@ -79,5 +89,27 @@ public class GameManager : MonoBehaviour
             scoreText.text = score.ToString();
 
         }
+    }
+
+    void SaveBestScore()
+    {
+
+        if(PlayerPrefs.HasKey("BestScore"))
+        {
+            //if we have already best score
+            if(score > PlayerPrefs.GetInt("BestScore"))
+            {
+                PlayerPrefs.SetInt("BestScore", score);
+            }
+
+
+        }
+        else
+        {
+            // First play
+            PlayerPrefs.SetInt("BestScore", score);
+
+        }
+
     }
 }
