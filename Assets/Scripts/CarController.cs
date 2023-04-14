@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class CarController : MonoBehaviour
 {
@@ -70,6 +71,18 @@ public class CarController : MonoBehaviour
         {
             moveLeft = true;
             transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Diamond")
+        {
+
+            other.gameObject.SetActive(false);
+            GameManager.instance.CollectCrystal();
+
         }
 
     }

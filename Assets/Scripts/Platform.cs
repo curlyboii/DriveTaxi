@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -15,12 +18,13 @@ public class Platform : MonoBehaviour
         int randomDiamond = Random.Range(0, 10); //chance
 
         Vector3 diamondPosition = transform.position; // platform position
+
         diamondPosition.y += 1f; 
 
         if(randomDiamond < 1) //if 0 - spawn
         {
-            Instantiate(diamond, diamondPosition, diamond.transform.rotation);
-
+            GameObject diamondInstance = Instantiate(diamond, diamondPosition, diamond.transform.rotation);
+            diamondInstance.transform.SetParent(gameObject.transform); //platform parent
         }
         
     }
@@ -48,3 +52,6 @@ public class Platform : MonoBehaviour
     
     }
 }
+
+
+
