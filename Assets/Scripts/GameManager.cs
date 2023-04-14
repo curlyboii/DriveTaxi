@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnerPlatforms;// we need reference to platform to stop generating when car fall
 
-    int score = 0;
+    public int score = 0;
 
     public Text scoreText;
     public Text bestScoreText;
@@ -70,9 +70,11 @@ public class GameManager : MonoBehaviour
                 GameStart();
             }
         }
-        //Debug.Log("Crystals: " + playerData.crystals);
+        //------Debug.Log("Crystals: " + playerData.crystals);----
 
         crystalText.text = playerData.crystals.ToString();// update crystal on display
+
+
 
     }
 

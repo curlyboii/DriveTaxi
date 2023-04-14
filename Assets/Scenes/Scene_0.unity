@@ -1587,6 +1587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStarted: 0
   spawnerPlatforms: {fileID: 1566817190}
+  score: 0
   scoreText: {fileID: 264375467}
   bestScoreText: {fileID: 1204453414}
   crystalText: {fileID: 1878616358}

@@ -30,7 +30,44 @@ public class CarController : MonoBehaviour
             GameManager.instance.GameOver();
 
         }
-     
+
+        if (GameManager.instance.score == 10)
+        {
+            moveSpeed = 7.35f; 
+
+        }
+        else if (GameManager.instance.score == 25)
+        {
+            moveSpeed = 7.7f;
+        }
+        else if (GameManager.instance.score == 50)
+        {
+            moveSpeed = 8f;
+        }
+        else if (GameManager.instance.score == 75)
+        {
+            moveSpeed = 8.5f;
+        }
+        else if (GameManager.instance.score == 100)
+        {
+            moveSpeed = 9f;
+        }
+        else if (GameManager.instance.score == 125)
+        {
+            moveSpeed = 10f;
+        }
+        else if (GameManager.instance.score == 150)
+        {
+            moveSpeed = 11f;
+        }
+        else if (GameManager.instance.score == 175)
+        {
+            moveSpeed = 12f;
+        }
+        else if (GameManager.instance.score == 200)
+        {
+            moveSpeed = 13f;
+        }
     }
 
     void Move()
