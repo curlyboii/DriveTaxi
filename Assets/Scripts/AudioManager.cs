@@ -35,4 +35,9 @@ public class AudioManager : MonoBehaviour
             musicStarted = true;
         }
     }
+
+    public void PickedUp()
+    {
+        audioSource.PlayOneShot(gameMusic[2], 0.2f); //20% volume
+    }
 }

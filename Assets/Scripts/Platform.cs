@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Platform : MonoBehaviour
 {

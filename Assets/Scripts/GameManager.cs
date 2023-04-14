@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
                 GameStart();
             }
         }
-        Debug.Log("Crystals: " + playerData.crystals);
+        //Debug.Log("Crystals: " + playerData.crystals);
 
         crystalText.text = playerData.crystals.ToString();// update crystal on display
 

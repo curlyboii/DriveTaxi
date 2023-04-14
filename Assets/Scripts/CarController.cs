@@ -82,6 +82,7 @@ public class CarController : MonoBehaviour
 
             other.gameObject.SetActive(false);
             GameManager.instance.CollectCrystal();
+            AudioManager.instance.PickedUp();
 
         }
 
