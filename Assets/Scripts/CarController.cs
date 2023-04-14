@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     public float moveSpeed;
     bool moveLeft = true; // currently moving to the left
     bool firstInput = true;
+    public GameObject pickUpEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +84,7 @@ public class CarController : MonoBehaviour
             other.gameObject.SetActive(false);
             GameManager.instance.CollectCrystal();
             AudioManager.instance.PickedUp();
+            Instantiate(pickUpEffect, other.transform.position, pickUpEffect.transform.rotation);
 
         }
 
