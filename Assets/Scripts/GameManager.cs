@@ -17,7 +17,7 @@ public class PlayerData
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerData playerData; // This variable will be used to store the player's data, including the number of crystals they've collected
+    public PlayerData playerData; // This variable will be used to store the player's data, including the number of crystals they've collected
 
     public static GameManager instance;
 
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameplayUI;
     public GameObject MenuUI;
 
+    int adCounter = 0;
 
 
     private void Awake()
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         bestScore = PlayerPrefs.GetInt("BestScore");
         bestScoreText.text = "Best score: " + bestScore;
+        CheckAdCounter();
         LoadData();
         // initialize playerData object with default values
         if (playerData == null)
@@ -91,8 +93,23 @@ public class GameManager : MonoBehaviour
         spawnerPlatforms.SetActive(false);
         StopCoroutine("UpdateScore");
         SaveBestScore();
-        Invoke("ReloadScene", 1f);
 
+
+        if(adCounter >= 4)
+        {
+            adCounter = 0;
+            PlayerPrefs.SetInt("AdCount", 0);
+            AdsManager.instance.ShowAdsInterstitial(); //show ads
+
+        }
+        else
+        {
+            Invoke("ReloadScene", 1f);
+        }
+
+            // we did reload scene when the ad has already been viewed
+        // Invoke("ReloadScene", 1f);
+            //
     }
 
     public void ReloadScene()
@@ -192,5 +209,22 @@ public class GameManager : MonoBehaviour
         playerData.crystals++;
         crystalText.text = "Crystal: " + playerData.crystals.ToString(); // update the text component to display the current amount of crystals
         SaveData(); // Save crystal
+    }
+
+    void CheckAdCounter()
+    {
+        if(PlayerPrefs.HasKey("AdCount"))
+        {
+            adCounter = PlayerPrefs.GetInt("AdCount");
+            adCounter++;
+            PlayerPrefs.SetInt("AdCount", adCounter); // set +1
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("AdCount", 0);
+        }
+
+
     }
 }

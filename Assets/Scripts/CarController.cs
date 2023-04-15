@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     bool moveLeft = true; // currently moving to the left
     bool firstInput = true;
     public GameObject pickUpEffect;
+    bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,10 @@ public class CarController : MonoBehaviour
 
         if(transform.position.y <= -2)
         {
-            GameManager.instance.GameOver();
-
+            if (!gameOver)
+            {
+                GameManager.instance.GameOver();
+            }
         }
 
         if (GameManager.instance.score == 10)
